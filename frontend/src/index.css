@@ -1,0 +1,172 @@
+:root {
+  --primary-brown: #8B4513;
+  --light-brown: #D2B48C;
+  --dark-brown: #654321;
+  --cream: #F5F5DC;
+  --warm-white: #FFF8F0;
+  --accent-orange: #CD853F;
+  --text-dark: #4A4A4A;
+  --text-light: #6A6A6A;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  background-color: var(--warm-white);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ヘッダースタイル */
+.header {
+  background-color: var(--primary-brown);
+  color: white;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+/* ナビゲーション */
+.nav {
+  background-color: var(--light-brown);
+  padding: 0.5rem 0;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-item {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  color: var(--text-dark);
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background-color: var(--primary-brown);
+  color: white;
+}
+
+/* カードスタイル */
+.card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+/* ボタンスタイル */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: var(--primary-brown);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--dark-brown);
+}
+
+.btn-secondary {
+  background-color: var(--light-brown);
+  color: var(--text-dark);
+}
+
+.btn-secondary:hover {
+  background-color: var(--accent-orange);
+  color: white;
+}
+
+/* マップコンテナ */
+.map-container {
+  height: 400px;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+/* フォームスタイル */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--light-brown);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-brown);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .nav-list {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .nav-item {
+    text-align: center;
+  }
+  
+  .container {
+    padding: 0 10px;
+  }
+  
+  .header h1 {
+    font-size: 1.5rem;
+  }
+}

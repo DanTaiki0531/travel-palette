@@ -1,0 +1,28 @@
+{
+  "name": "travel-palette-frontend",
+  "version": "1.0.0",
+  "description": "想い出も育てる、共有型デジタルしおりアプリ - フロントエンド",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0",
+    "leaflet": "^1.9.4",
+    "react-leaflet": "^4.2.1",
+    "axios": "^1.3.0",
+    "date-fns": "^2.29.3",
+    "@types/leaflet": "^1.9.3"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/node": "^20.0.0",
+    "@vitejs/plugin-react": "^3.1.0",
+    "typescript": "^4.9.4",
+    "vite": "^4.1.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  }
+}
