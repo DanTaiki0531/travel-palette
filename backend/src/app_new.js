@@ -58,16 +58,7 @@ if (!fs.existsSync(dbDir)) {
   fs.mkdirSync(dbDir, { recursive: true });
 }
 
-console.log('Database path:', dbPath);
-console.log('Database directory exists:', fs.existsSync(dbDir));
-
-const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) {
-    console.error('Database connection error:', err);
-  } else {
-    console.log('Connected to SQLite database');
-  }
-});
+const db = new sqlite3.Database(dbPath);
 
 // データベーステーブル作成
 db.serialize(() => {
