@@ -1,21 +1,48 @@
-/* App.css */
+/* App.css - 温かく親しみやすいデザインテーマ */
 :root {
-  --brown-dark: #654321;
-  --brown-medium: #8B7355;
-  --brown-light: #D2B48C;
-  --cream: #FFF8DC;
-  --accent: #DEB887;
+  --warm-bg: #f5f1eb;
+  --warm-white: #ffffff;
+  --warm-orange: #e67e33;
+  --warm-orange-light: #f0924a;
+  --warm-orange-dark: #d4621c;
+  --text-dark: #2c2c2c;
+  --text-gray: #666666;
+  --text-light: #999999;
+  --border-light: rgba(230, 126, 51, 0.2);
+  --shadow-warm: rgba(230, 126, 51, 0.15);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--cream);
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--warm-bg);
+  color: var(--text-dark);
+  overflow-x: hidden;
 }
 
 .App {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--cream) 0%, var(--brown-light) 100%);
+  background: var(--warm-bg);
+  position: relative;
+}
+
+.App::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(230, 126, 51, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(230, 126, 51, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(230, 126, 51, 0.025) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* ローディング画面 */
@@ -25,18 +52,32 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: linear-gradient(135deg, var(--cream) 0%, var(--brown-light) 100%);
-  color: var(--brown-dark);
+  background: var(--warm-bg);
+  color: var(--text-dark);
 }
 
 .loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 4px solid var(--brown-light);
-  border-top: 4px solid var(--brown-medium);
+  width: 60px;
+  height: 60px;
+  border: 3px solid rgba(230, 126, 51, 0.2);
+  border-top: 3px solid var(--warm-orange);
   border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 20px;
+  animation: spin 1.5s linear infinite;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.loading-spinner::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 3px solid rgba(230, 126, 51, 0.1);
+  border-bottom: 3px solid var(--warm-orange-light);
+  border-radius: 50%;
+  animation: spin 2s linear infinite reverse;
 }
 
 @keyframes spin {
@@ -48,6 +89,8 @@ body {
   font-size: 18px;
   font-weight: 500;
   margin: 0;
+  color: var(--text-gray);
+  letter-spacing: 0.5px;
 }
 
 .container {

@@ -2,8 +2,7 @@
 const Navigation = ({ activeTab, setActiveTab }) => {
   const navItems = [
     { id: 'planner', label: '旅行プランナー', icon: '📋' },
-    { id: 'map', label: 'わくわくマップ', icon: '🗺️' },
-    { id: 'itinerary', label: '旅のしおり', icon: '📖' }
+    { id: 'map', label: 'わくわくマップ', icon: '🗺️' }
   ];
 
   return (

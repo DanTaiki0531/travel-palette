@@ -1,12 +1,17 @@
 :root {
-  --primary-brown: #8B4513;
-  --light-brown: #D2B48C;
-  --dark-brown: #654321;
-  --cream: #F5F5DC;
-  --warm-white: #FFF8F0;
-  --accent-orange: #CD853F;
-  --text-dark: #4A4A4A;
-  --text-light: #6A6A6A;
+  --warm-bg: #f5f1eb;
+  --warm-white: #ffffff;
+  --warm-orange: #e67e33;
+  --warm-orange-light: #f0924a;
+  --warm-orange-dark: #d4621c;
+  --text-dark: #2c2c2c;
+  --text-gray: #666666;
+  --text-light: #999999;
+  --border-light: rgba(230, 126, 51, 0.2);
+  --border-medium: rgba(230, 126, 51, 0.3);
+  --shadow-warm: rgba(230, 126, 51, 0.15);
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  --bg-light: rgba(230, 126, 51, 0.05);
 }
 
 * {
@@ -16,36 +21,46 @@
 }
 
 body {
-  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-  background-color: var(--warm-white);
+  font-family: 'Inter', 'SF Pro Display', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--warm-bg);
   color: var(--text-dark);
   line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  overflow-x: hidden;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 2rem;
 }
 
 /* ヘッダースタイル */
 .header {
-  background-color: var(--primary-brown);
-  color: white;
-  padding: 1rem 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: var(--warm-white);
+  color: var(--text-dark);
+  padding: 1.5rem 0;
+  box-shadow: 0 2px 12px var(--shadow-light);
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .header h1 {
   text-align: center;
-  font-size: 1.8rem;
-  font-weight: 300;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--warm-orange);
+  letter-spacing: 1px;
 }
 
 /* ナビゲーション */
 .nav {
-  background-color: var(--light-brown);
-  padding: 0.5rem 0;
+  background: var(--bg-light);
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .nav-list {
@@ -56,117 +71,180 @@ body {
 }
 
 .nav-item {
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+  padding: 1rem 2rem;
+  border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
-  background-color: transparent;
-  color: var(--text-dark);
+  background: transparent;
+  color: var(--text-gray);
+  border: 1px solid transparent;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  font-size: 0.95rem;
+  position: relative;
 }
 
 .nav-item:hover,
 .nav-item.active {
-  background-color: var(--primary-brown);
-  color: white;
+  background: var(--warm-orange);
+  color: var(--warm-white);
+  border-color: var(--warm-orange);
+  box-shadow: 0 4px 12px var(--shadow-warm);
+  transform: translateY(-1px);
 }
 
 /* カードスタイル */
 .card {
-  background-color: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  margin: 1rem 0;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
+  background: var(--warm-white);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 16px var(--shadow-light);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--warm-orange);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 16px 16px 0 0;
 }
 
 .card:hover {
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--shadow-warm);
+  border-color: var(--warm-orange);
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 /* ボタンスタイル */
 .btn {
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 2rem;
   border: none;
-  border-radius: 25px;
+  border-radius: 12px;
   cursor: pointer;
   font-size: 1rem;
+  font-weight: 500;
   transition: all 0.3s ease;
   text-decoration: none;
   display: inline-block;
   text-align: center;
+  letter-spacing: 0.3px;
+  position: relative;
 }
 
 .btn-primary {
-  background-color: var(--primary-brown);
-  color: white;
+  background: var(--warm-orange);
+  color: var(--warm-white);
+  box-shadow: 0 4px 12px var(--shadow-warm);
 }
 
 .btn-primary:hover {
-  background-color: var(--dark-brown);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-warm);
+  background: var(--warm-orange-dark);
 }
 
 .btn-secondary {
-  background-color: var(--light-brown);
-  color: var(--text-dark);
+  background: var(--warm-white);
+  color: var(--text-gray);
+  border: 1px solid var(--border-medium);
+  box-shadow: 0 2px 8px var(--shadow-light);
 }
 
 .btn-secondary:hover {
-  background-color: var(--accent-orange);
-  color: white;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  border-color: var(--warm-orange);
+  box-shadow: 0 4px 12px var(--shadow-warm);
+  transform: translateY(-1px);
 }
 
 /* マップコンテナ */
 .map-container {
-  height: 400px;
+  height: 500px;
   width: 100%;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
-  margin: 1rem 0;
+  margin: 2rem 0;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 16px var(--shadow-light);
 }
 
 /* フォームスタイル */
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
   color: var(--text-dark);
   font-weight: 500;
+  letter-spacing: 0.3px;
+  font-size: 0.95rem;
 }
 
 .form-input {
   width: 100%;
-  padding: 0.75rem;
-  border: 2px solid var(--light-brown);
-  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--border-medium);
+  border-radius: 12px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
+  background: var(--warm-white);
+  color: var(--text-dark);
+  box-shadow: 0 2px 4px var(--shadow-light);
+}
+
+.form-input::placeholder {
+  color: var(--text-light);
 }
 
 .form-input:focus {
   outline: none;
-  border-color: var(--primary-brown);
+  border-color: var(--warm-orange);
+  box-shadow: 0 0 0 3px rgba(230, 126, 51, 0.1);
+  transform: translateY(-1px);
 }
 
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
   .nav-list {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
   }
   
   .nav-item {
     text-align: center;
+    padding: 0.8rem 1.5rem;
   }
   
   .container {
-    padding: 0 10px;
+    padding: 0 1rem;
   }
   
   .header h1 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
   }
 }

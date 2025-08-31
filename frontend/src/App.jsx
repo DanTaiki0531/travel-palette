@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AuthScreen from './components/AuthScreen.jsx';
 import Header from './components/Header.jsx';
-import Itinerary from './components/Itinerary.jsx';
 import MapView from './components/MapView.jsx';
 import Navigation from './components/Navigation.jsx';
 import TripPlanner from './components/TripPlanner.jsx';
@@ -36,7 +35,6 @@ const AppContent = () => {
       <main className="container">
         {activeTab === 'planner' && <TripPlanner />}
         {activeTab === 'map' && <MapView />}
-        {activeTab === 'itinerary' && <Itinerary />}
       </main>
     </div>
   );

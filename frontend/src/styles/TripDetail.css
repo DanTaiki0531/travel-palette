@@ -1,0 +1,480 @@
+/* TripDetail.css - 旅行詳細ページ専用スタイル */
+
+.trip-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f1e8 0%, #ede4d1 100%);
+}
+
+.trip-detail-header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.back-btn {
+  background: var(--warm-orange);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  margin-top: 0.2rem;
+}
+
+.back-btn:hover {
+  background: var(--warm-orange-dark);
+  transform: translateY(-1px);
+}
+
+.trip-title-section {
+  flex: 1;
+}
+
+.trip-title-section h1 {
+  color: var(--warm-orange-dark);
+  margin: 0 0 0.5rem 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.trip-subtitle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.destination,
+.dates {
+  color: var(--text-light);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.trip-hero-image {
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(139, 90, 43, 0.2);
+}
+
+.trip-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* タブナビゲーション */
+.trip-tabs {
+  display: flex;
+  background: white;
+  border-radius: 15px;
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(139, 90, 43, 0.1);
+  overflow-x: auto;
+  gap: 0.5rem;
+}
+
+.tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-light);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  min-width: 120px;
+}
+
+.tab-btn:hover {
+  background: rgba(139, 90, 43, 0.1);
+  color: var(--warm-orange-dark);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--warm-orange) 0%, var(--warm-orange-dark) 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(230, 126, 51, 0.3);
+}
+
+.tab-icon {
+  font-size: 1.2rem;
+}
+
+/* タブコンテンツ */
+.trip-content {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(139, 90, 43, 0.15);
+  min-height: 400px;
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+/* 概要タブ */
+.overview-tab {
+  width: 100%;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.overview-card {
+  background: #fafafa;
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+}
+
+.overview-card h3 {
+  color: var(--warm-orange-dark);
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1rem;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #e8e8e8;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--warm-orange-dark);
+  margin-bottom: 0.2rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.description-card {
+  grid-column: 1 / -1;
+}
+
+.description-card p {
+  color: var(--text-dark);
+  line-height: 1.6;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.activity-list {
+  min-height: 100px;
+}
+
+.no-activity {
+  color: var(--text-light);
+  text-align: center;
+  padding: 2rem;
+  font-style: italic;
+  margin: 0;
+}
+
+/* 他のタブ */
+.tab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.tab-header h3 {
+  color: var(--warm-orange-dark);
+  margin: 0;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.add-btn {
+  background: linear-gradient(135deg, var(--warm-orange) 0%, var(--warm-orange-dark) 100%);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(139, 90, 43, 0.3);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+.empty-state p {
+  margin: 0;
+}
+
+/* カードリスト */
+.spots-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.spot-card {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.spot-card:hover {
+  box-shadow: 0 4px 15px rgba(139, 90, 43, 0.1);
+  transform: translateY(-1px);
+}
+
+.spot-card .spot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.spot-card h4 {
+  color: var(--warm-orange-dark);
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.spot-card p {
+  color: var(--text-dark);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+.spot-address {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.status-badge.visited {
+  background: #e8f5e8;
+  color: #2e7d32;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.add-first-spot-btn {
+  background: linear-gradient(135deg, var(--warm-orange) 0%, var(--warm-orange-dark) 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.add-first-spot-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 90, 43, 0.3);
+}
+
+.more-expenses {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.view-all-btn {
+  background: var(--warm-orange);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.view-all-btn:hover {
+  background: var(--warm-orange-dark);
+  transform: translateY(-1px);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .trip-detail-container {
+    padding: 1rem;
+  }
+
+  .trip-detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .back-btn {
+    align-self: flex-start;
+  }
+
+  .trip-title-section h1 {
+    font-size: 2rem;
+  }
+
+  .trip-subtitle {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .trip-hero-image {
+    height: 200px;
+    margin-bottom: 1.5rem;
+  }
+
+  .trip-tabs {
+    padding: 0.3rem;
+    gap: 0.3rem;
+  }
+
+  .tab-btn {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    min-width: 100px;
+  }
+
+  .tab-icon {
+    font-size: 1rem;
+  }
+
+  .trip-content {
+    padding: 1.5rem;
+  }
+
+  .overview-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+
+  .stat-item {
+    padding: 0.8rem 0.5rem;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+  }
+
+  .tab-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .tab-header h3 {
+    font-size: 1.3rem;
+  }
+
+  .add-btn {
+    align-self: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .trip-title-section h1 {
+    font-size: 1.5rem;
+  }
+
+  .destination,
+  .dates {
+    font-size: 1rem;
+  }
+
+  .trip-hero-image {
+    height: 150px;
+  }
+
+  .tab-btn {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+    min-width: 80px;
+  }
+
+  .overview-card {
+    padding: 1rem;
+  }
+
+  .stat-item {
+    padding: 0.6rem 0.3rem;
+  }
+
+  .stat-number {
+    font-size: 1.2rem;
+  }
+
+  .spot-card {
+    padding: 1rem;
+  }
+}

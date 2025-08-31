@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchProfile = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/auth/profile', {
+      const response = await fetch('http://localhost:3002/api/auth/profile', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await fetch('http://localhost:3001/api/auth/login', {
+      const response = await fetch('http://localhost:3002/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, password) => {
     try {
-      const response = await fetch('http://localhost:3001/api/auth/register', {
+      const response = await fetch('http://localhost:3002/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ export const AuthProvider = ({ children }) => {
 
   const checkUsernameAvailability = async (username) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/auth/check-username/${username}`);
+      const response = await fetch(`http://localhost:3002/api/auth/check-username/${username}`);
       
       if (!response.ok) {
         // サーバーエラーの場合は利用可能として扱う（サーバー未起動時など）

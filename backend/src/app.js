@@ -8,8 +8,14 @@ require('dotenv').config();
 // 認証ルートとミドルウェアをインポート
 const { router: authRouter, authenticateToken } = require('./routes/auth');
 
+// 旅のしおりルートをインポート
+const tripsRouter = require('./routes/trips');
+const tripSpotsRouter = require('./routes/trip-spots');
+const expensesRouter = require('./routes/expenses');
+const memoriesRouter = require('./routes/memories');
+
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
 // ミドルウェア
 app.use(cors());
@@ -71,7 +77,100 @@ const db = new sqlite3.Database(dbPath, (err) => {
 
 // データベーステーブル作成
 db.serialize(() => {
-  // スポットテーブル
+  // ユーザーテーブル（認証で既に作成済み）
+  
+  // 旅行プランテーブル
+  db.run(`CREATE TABLE IF NOT EXISTS trips (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    title TEXT NOT NULL,
+    destination TEXT NOT NULL,
+    start_date TEXT NOT NULL,
+    end_date TEXT NOT NULL,
+    description TEXT,
+    budget REAL DEFAULT 0,
+    status TEXT DEFAULT 'planning',
+    cover_image TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users (id)
+  )`);
+
+  // 旅行日程テーブル
+  db.run(`CREATE TABLE IF NOT EXISTS trip_days (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    trip_id INTEGER NOT NULL,
+    date TEXT NOT NULL,
+    title TEXT,
+    description TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (trip_id) REFERENCES trips (id) ON DELETE CASCADE
+  )`);
+
+  // 旅行スポットテーブル（既存のspotsテーブルを拡張）
+  db.run(`CREATE TABLE IF NOT EXISTS trip_spots (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    trip_id INTEGER,
+    trip_day_id INTEGER,
+    user_id INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    category TEXT NOT NULL,
+    lat REAL,
+    lng REAL,
+    address TEXT,
+    description TEXT,
+    image_url TEXT,
+    visit_time TEXT,
+    duration INTEGER DEFAULT 60,
+    cost REAL DEFAULT 0,
+    notes TEXT,
+    rating INTEGER DEFAULT 0,
+    visited BOOLEAN DEFAULT 0,
+    order_index INTEGER DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (trip_id) REFERENCES trips (id) ON DELETE CASCADE,
+    FOREIGN KEY (trip_day_id) REFERENCES trip_days (id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users (id)
+  )`);
+
+  // 費用記録テーブル
+  db.run(`CREATE TABLE IF NOT EXISTS trip_expenses (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    trip_id INTEGER NOT NULL,
+    trip_spot_id INTEGER,
+    user_id INTEGER NOT NULL,
+    category TEXT NOT NULL,
+    description TEXT NOT NULL,
+    amount REAL NOT NULL,
+    currency TEXT DEFAULT 'JPY',
+    date TEXT NOT NULL,
+    payment_method TEXT,
+    receipt_image TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (trip_id) REFERENCES trips (id) ON DELETE CASCADE,
+    FOREIGN KEY (trip_spot_id) REFERENCES trip_spots (id) ON DELETE SET NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id)
+  )`);
+
+  // 思い出記録テーブル
+  db.run(`CREATE TABLE IF NOT EXISTS trip_memories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    trip_id INTEGER NOT NULL,
+    trip_spot_id INTEGER,
+    user_id INTEGER NOT NULL,
+    title TEXT NOT NULL,
+    content TEXT,
+    image_url TEXT,
+    emotion TEXT,
+    weather TEXT,
+    date TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (trip_id) REFERENCES trips (id) ON DELETE CASCADE,
+    FOREIGN KEY (trip_spot_id) REFERENCES trip_spots (id) ON DELETE SET NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id)
+  )`);
+
+  // スポットテーブル（既存）
   db.run(`CREATE TABLE IF NOT EXISTS spots (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
@@ -87,7 +186,7 @@ db.serialize(() => {
     FOREIGN KEY (user_id) REFERENCES users (id)
   )`);
 
-  // 行程テーブル
+  // 行程テーブル（既存）
   db.run(`CREATE TABLE IF NOT EXISTS itinerary_items (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
@@ -105,6 +204,12 @@ db.serialize(() => {
 
 // 認証ルート
 app.use('/api/auth', authRouter);
+
+// 旅のしおりルート（認証が必要）
+app.use('/api/trips', authenticateToken, tripsRouter);
+app.use('/api/trip-spots', authenticateToken, tripSpotsRouter);
+app.use('/api/expenses', authenticateToken, expensesRouter);
+app.use('/api/memories', authenticateToken, memoriesRouter);
 
 // API ルート（以下は認証が必要）
 
@@ -264,6 +369,10 @@ app.use('*', (req, res) => {
   res.status(404).json({ error: 'エンドポイントが見つかりません' });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on port ${PORT}`);
+  console.log(`Health check: http://localhost:${PORT}/api/health`);
+}).on('error', (err) => {
+  console.error('Server start error:', err);
+  process.exit(1);
 });

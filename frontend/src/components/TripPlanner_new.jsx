@@ -103,12 +103,12 @@ const TripPlanner = () => {
   return (
     <div className="trip-planner-container">
       <div className="trip-planner-header">
-        <h2>旅行プラン</h2>
+        <h2>旅のしおり</h2>
         <button 
           className="create-trip-btn"
           onClick={() => setShowCreateForm(true)}
         >
-          新しい旅行を計画
+          ＋ 新しい旅行を計画
         </button>
       </div>
 
@@ -129,7 +129,7 @@ const TripPlanner = () => {
           <div className="empty-state">
             <div className="empty-icon">✈️</div>
             <h3>まだ旅行プランがありません</h3>
-            <p>新しい旅行を計画して、素敵な思い出を作りましょう。</p>
+            <p>新しい旅行を計画して、素敵な思い出を作りましょう！</p>
             <button 
               className="create-first-trip-btn"
               onClick={() => setShowCreateForm(true)}
